@@ -1,0 +1,83 @@
+<div class="col-md-6">
+  <h2>Lista de Normas</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>No.</th>
+        <th>Fecha</th>
+        <th>Fecha de Inicio</th>
+        <th>Fecha de Fin</th>
+        <th>Monto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let n of norms" (click)="selectData(n)">
+        <td>{{n.Norma}}</td>
+        <td>{{n.Numero}}</td>
+        <td>{{n.Fecha}}</td>
+        <td>{{n.FechaInicio}}</td>
+        <td>{{n.FechaFinal}}</td>
+        <td>$ {{n.Monto}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <a class="btn btn-primary btn-block" (click)="add()">Nueva Norma</a>
+</div>
+
+<div class="form-horizontal col-md-6" *ngIf="show_form">
+  <h2>Nueva Tabla</h2>
+  <div class="form-group">
+    <label class="control-label col-md-4" for="norma">Norma:</label>
+    <div class="col-md-8">
+      <select class="form-control" [(ngModel)]="newData.Norma">
+        <option value="Norma">Norma</option>
+        <option value="Resolucion">Resolucion</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-md-4" for="numero_norma">No. Norma:</label>
+    <div class="col-md-8">
+      <input type="text" class="form-control" id="numero_norma" placeholder="Numero de norma o resolución" [(ngModel)]="newData.Numero">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-md-4" for="fecha_norma">Fecha:</label>
+    <div class="col-md-8">
+      <input type="date" class="form-control" id="fecha_norma" [(ngModel)]="newData.Fecha">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-md-4" for="fecha_inicio">Fecha Vigencia (Desde):</label>
+    <div class="col-md-8">
+      <input type="date" class="form-control" id="fecha_inicio" [(ngModel)]="newData.FechaInicio">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-md-4" for="fecha_final">Fecha Vigencia (Hasta):</label>
+    <div class="col-md-8">
+      <input type="date" class="form-control" id="fecha_final" [(ngModel)]="newData.FechaFinal">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-md-4" for="monto">Monto (Porcentaje):</label>
+    <div class="col-md-8">
+      <input type="text" class="form-control" id="monto" placeholder="Ingrese el monto" [(ngModel)]="newData.Monto">
+    </div>
+  </div>
+  <div class="col-md-6" *ngIf="save_click" >
+    <a class="btn btn-primary btn-block" (click)="save_new()">Guardar</a>
+  </div>
+  <div class="col-md-6" *ngIf="options_buttons">
+    <div class="col-md-6">
+      <a class="btn btn-warning btn-block" (click)="save_edit()">Editar</a>
+    </div>
+    <div class="col-md-6">
+      <a class="btn btn-danger btn-block" (click)="delete()">Borrar</a>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <a class="btn btn-default btn-block" (click)="cancel()">Cancelar</a>
+  </div>
+</div>
